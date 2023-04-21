@@ -10,8 +10,32 @@ public class SolverLinearEquation {
         this.eps = eps;
     }
 
+
+
     public int getIters(){
         return current_iters;
+    }
+
+    public double findRootByHalfDevision(double a, double b){
+        if(equation.apply(a)*equation.apply(b) >=0){
+            throw new IllegalArgumentException("Theorem violation");
+
+        }
+        while(true){
+            double c = (a+b)/2;
+            double f_a = equation.apply(a);
+            double f_b = equation.apply(b);
+            double f_c = equation.apply(c);
+            if(Math.abs(f_c< eps)){
+                return c;
+            }
+            if(f_a * f_b < 0){
+                b = c;
+            }
+            else{
+                a = c;
+            }
+        }
     }
 
     public double findRootByChord(double a, double b){
