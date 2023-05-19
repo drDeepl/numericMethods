@@ -29,17 +29,18 @@ public class SolverLinearEquation {
     double c;
     for (int i = 0; i < maxIterations; i++) {
       c = (a + b) / 2; // middle point
-      double fa = equation.apply(a); // function value at 'a'
-      double fb = equation.apply(b); // function value at 'b'
-      double fc = equation.apply(c); // function value at 'c'
-      if (Math.abs(fc) < eps) { // tolerance check
+      double fa = equation.apply(a);
+      double fb = equation.apply(b);
+      double fc = equation.apply(c);
+      if (Math.abs(fc) < eps) {
         return c;
       }
-      if (fa * fc < 0) { // root is in the left half-interval
+      if (fa * fc < 0) {
         b = c;
-      } else if (fb * fc < 0) { // root is in the right half-interval
+      } else if (fb * fc < 0) {
         a = c;
-      } else { // no root in the given interval
+      } else {
+        // No root in interval
         return Double.NaN;
       }
     }
@@ -51,7 +52,8 @@ public class SolverLinearEquation {
     double a_equation = equation.apply(a);
     double b_equation = equation.apply(b);
     if (Math.signum(a_equation * b_equation) > 0) {
-      throw new IllegalArgumentException("Theorem violation");
+      // throw new IllegalArgumentException("Theorem violation");
+      return Double.NaN;
     }
     double c_equation;
     double c1 = a;
@@ -75,13 +77,14 @@ public class SolverLinearEquation {
     }
   }
 
-  public double solveByTangentMethod(double x0, int iterations) {
-    double x = x0;
-    for (int i = 0; i < iterations; i++) {
-      double fx = equation.apply(x);
-      double fDeriv = equation.derivEquation(x);
-      x = x - fx / fDeriv;
-    }
-    return x;
-  }
+  // public double findRootByTangentMethod(double x0, int iterations) {
+  // double x = x0;
+  // for (int i = 0; i < iterations; i++) {
+  // double fx = equation.apply(x);
+  // double fDeriv = equation.derivEquation(x);
+  // x = x - fx / fDeriv;
+  // }
+  // return x;
+  // }
+
 }

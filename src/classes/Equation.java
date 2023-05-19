@@ -17,7 +17,9 @@ public class Equation {
   }
 
   public double apply(double x) {
-    return d3 * Math.pow(x, 3) + d2 * Math.pow(x, 2) + d1 * x + d0;
+    double result = d3 * Math.pow(x, 3) + d2 * Math.pow(x, 2) + d1 * x + d0;
+    
+    return result;
   }
 
   public double secondDerivative(double x, double h) {
