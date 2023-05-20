@@ -1,8 +1,7 @@
 package classes;
 
 public class Equation {
-
-  private double d0;
+private double d0;
   private double d1;
   private double d2;
   private double d3;
@@ -20,6 +19,12 @@ public class Equation {
     double result = d3 * Math.pow(x, 3) + d2 * Math.pow(x, 2) + d1 * x + d0;
     
     return result;
+  }
+
+  public double firstDerivative(double x, double h) {
+    double fx = apply(x);
+    double fxh = apply(x + h);
+    return (fxh - fx) / h;
   }
 
   public double secondDerivative(double x, double h) {
@@ -54,4 +59,5 @@ public class Equation {
     }
     return equation;
   }
+    
 }
